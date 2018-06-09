@@ -241,7 +241,7 @@ class TD
 
         return $this;
     }
-    
+
     /**
      * @param string $route
      * @param        $options
@@ -280,7 +280,7 @@ class TD
 
         return $this;
     }
-    
+
     /**
      * @param string $align
      *
