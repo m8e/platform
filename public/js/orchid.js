@@ -4,7 +4,7 @@ webpackJsonp([1],{
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(171);
-module.exports = __webpack_require__(250);
+module.exports = __webpack_require__(251);
 
 
 /***/ }),
@@ -3387,8 +3387,9 @@ var map = {
 	"./fields/upload_controller.js": 225,
 	"./fields/utm_controller.js": 226,
 	"./layouts/html_load_controller.js": 227,
-	"./layouts/left_menu_controller.js": 248,
-	"./layouts/systems_controller.js": 249
+	"./layouts/layout_list_controller.js": 248,
+	"./layouts/left_menu_controller.js": 249,
+	"./layouts/systems_controller.js": 250
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -4705,6 +4706,73 @@ var _class = function (_Controller) {
     }
 
     _createClass(_class, [{
+        key: "connect",
+
+        /**
+         *
+         */
+        value: function connect() {}
+    }, {
+        key: "edit",
+        value: function edit() {
+            var url = this.data.get('url');
+            //var modaldata = '';
+            var element = this.element;
+            var modalTarget = this.modalTarget;
+
+            var response = axios.post(url).then(function (response) {
+                //modaldata =response;
+                //element.querySelector('.modal').innerHTML = response.data;
+                var box1 = $.parseHTML(response.data); //$(response.data).find('#screen-modal-post');                     
+                //console.log(box1);
+                //element.querySelector('.modal').appendChild(box1); 
+                $('#modals-container').append(box1).text();
+                //modalTarget.append(response.data); 
+
+                $('#screen-modal-post').modal('show');
+                //console.log(response.data);
+            });
+
+            //this.modalTarget.innerHTML = response; 
+            //console.log(modaldata);
+        }
+    }]);
+
+    return _class;
+}(__WEBPACK_IMPORTED_MODULE_0_stimulus__["Controller"]);
+
+_class.targets = ["modal"];
+/* harmony default export */ __webpack_exports__["default"] = (_class);
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
+
+/***/ }),
+
+/***/ 249:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* WEBPACK VAR INJECTION */(function($) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_stimulus__ = __webpack_require__(2);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+var _class = function (_Controller) {
+    _inherits(_class, _Controller);
+
+    function _class() {
+        _classCallCheck(this, _class);
+
+        return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).apply(this, arguments));
+    }
+
+    _createClass(_class, [{
         key: 'connect',
 
 
@@ -4741,7 +4809,7 @@ var _class = function (_Controller) {
 
 /***/ }),
 
-/***/ 249:
+/***/ 250:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4796,7 +4864,7 @@ var _class = function (_Controller) {
 
 /***/ }),
 
-/***/ 250:
+/***/ 251:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

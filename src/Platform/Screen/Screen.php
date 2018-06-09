@@ -100,6 +100,19 @@ abstract class Screen
             'screen'    => $this,
         ]);
     }
+    
+    
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function postview()
+    {
+        return view('platform::container.layouts.postbase', [
+            'builds'    => $this->build(),
+            'arguments' => $this->arguments,
+            'screen'    => $this,
+        ]);
+    }
 
     /**
      * @param null $method
@@ -117,6 +130,12 @@ abstract class Screen
             $this->arguments = is_array($method) ? $method : [$method];
 
             return $this->view();
+        }
+        
+        if ($this->request->method() === 'POST' || (is_null($method) && is_null($parameters))) {
+            $this->arguments = is_array($method) ? $method : [$method];
+
+            return $this->postview();
         }
 
         if (! is_null($parameters)) {
