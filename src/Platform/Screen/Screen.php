@@ -100,8 +100,7 @@ abstract class Screen
             'screen'    => $this,
         ]);
     }
-    
-    
+
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
