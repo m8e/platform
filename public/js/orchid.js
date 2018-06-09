@@ -4,7 +4,7 @@ webpackJsonp([1],{
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(171);
-module.exports = __webpack_require__(251);
+module.exports = __webpack_require__(253);
 
 
 /***/ }),
@@ -3388,8 +3388,9 @@ var map = {
 	"./fields/utm_controller.js": 226,
 	"./layouts/html_load_controller.js": 227,
 	"./layouts/layout_list_controller.js": 248,
-	"./layouts/left_menu_controller.js": 249,
-	"./layouts/systems_controller.js": 250
+	"./layouts/left_menu_controller.js": 250,
+	"./layouts/listmodal_controller.js": 251,
+	"./layouts/systems_controller.js": 252
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -4076,7 +4077,7 @@ var _class = function (_Controller) {
     }
 
     _createClass(_class, [{
-        key: "connect",
+        key: 'connect',
         value: function connect() {
 
             //require.context(
@@ -4084,7 +4085,6 @@ var _class = function (_Controller) {
             //    true,
             //    /.*/
             //);
-            console.log("TinyMCE");
 
             __WEBPACK_IMPORTED_MODULE_1_tinymce_tinymce___default.a.baseURL = '/orchid/js/tinymce';
 
@@ -4103,7 +4103,7 @@ var _class = function (_Controller) {
 
             __WEBPACK_IMPORTED_MODULE_1_tinymce_tinymce___default.a.init({
                 branding: false,
-                selector: "#" + selector,
+                selector: '#' + selector,
                 theme: this.element.dataset.theme,
                 min_height: 300,
                 height: 300,
@@ -4133,7 +4133,7 @@ var _class = function (_Controller) {
                     data.append('file', blobInfo.blob());
 
                     axios.post(platform.prefix('/systems/files'), data).then(function (response) {
-                        success("/storage/" + response.data.path + response.data.name + "." + response.data.extension);
+                        success('/storage/' + response.data.path + response.data.name + '.' + response.data.extension);
                     }).catch(function (error) {
                         console.log(error);
                     });
@@ -4141,9 +4141,9 @@ var _class = function (_Controller) {
             });
         }
     }, {
-        key: "disconnect",
+        key: 'disconnect',
         value: function disconnect() {
-            __WEBPACK_IMPORTED_MODULE_1_tinymce_tinymce___default.a.remove("#" + this.element.querySelector('.tinymce').id);
+            __WEBPACK_IMPORTED_MODULE_1_tinymce_tinymce___default.a.remove('#' + this.element.querySelector('.tinymce').id);
         }
     }]);
 
@@ -4190,7 +4190,6 @@ var _class = function (_Controller) {
     _createClass(_class, [{
         key: "connect",
         value: function connect() {
-            console.log("Upload");
             this.initDropZone();
             this.initSortable();
         }
@@ -4722,6 +4721,7 @@ var _class = function (_Controller) {
 
             var response = axios.post(url).then(function (response) {
                 $('#screen-modal-post .modal-body').append($.parseHTML(response.data)).text();
+                $('#screen-modal-post').attr('data-layouts--listmodal-url', url);
                 $('#screen-modal-post').modal('show');
             });
         }
@@ -4735,7 +4735,7 @@ var _class = function (_Controller) {
 
 /***/ }),
 
-/***/ 249:
+/***/ 250:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4797,7 +4797,79 @@ var _class = function (_Controller) {
 
 /***/ }),
 
-/***/ 250:
+/***/ 251:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* WEBPACK VAR INJECTION */(function($) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_stimulus__ = __webpack_require__(2);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+var _class = function (_Controller) {
+  _inherits(_class, _Controller);
+
+  function _class() {
+    _classCallCheck(this, _class);
+
+    return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).apply(this, arguments));
+  }
+
+  _createClass(_class, [{
+    key: 'connect',
+
+
+    /**
+     *
+     */
+    value: function connect() {}
+  }, {
+    key: 'save',
+    value: function save(event) {
+      event.preventDefault();
+
+      var posturl = this.data.get('url') + '/save';
+      var formData = $("#screen-modal-post .modal-content").serializeArray();
+
+      var element = this.element;
+
+      //console.log("ISave "+posturl);
+
+
+      axios({
+        url: posturl,
+        method: 'POST',
+        data: formData,
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then();
+      /*
+      var response = axios.post(url,)
+               .then(function (response) {
+                   $('#screen-modal-post .modal-body').append($.parseHTML(response.data)).text();
+                   $('#screen-modal-post').attr('data-layouts--listmodal-url',url);
+                   $('#screen-modal-post').modal('show');
+               });*/
+    }
+  }]);
+
+  return _class;
+}(__WEBPACK_IMPORTED_MODULE_0_stimulus__["Controller"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (_class);
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
+
+/***/ }),
+
+/***/ 252:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4852,7 +4924,7 @@ var _class = function (_Controller) {
 
 /***/ }),
 
-/***/ 251:
+/***/ 253:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

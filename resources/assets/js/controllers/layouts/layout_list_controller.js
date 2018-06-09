@@ -16,6 +16,7 @@ export default class extends Controller {
        var response = axios.post(url)
                 .then(function (response) {
                     $('#screen-modal-post .modal-body').append($.parseHTML(response.data)).text();
+                    $('#screen-modal-post').attr('data-layouts--listmodal-url',url);
                     $('#screen-modal-post').modal('show');
                 });
     }

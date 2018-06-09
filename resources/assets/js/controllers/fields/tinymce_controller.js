@@ -67,7 +67,6 @@ export default class extends Controller {
         //    true,
         //    /.*/
         //);
-        console.log("TinyMCE");
         
         tinymce.baseURL = '/orchid/js/tinymce';
 
