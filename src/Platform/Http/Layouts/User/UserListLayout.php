@@ -44,9 +44,9 @@ class UserListLayout extends Table
             TD::set('email', trans('platform::systems/users.email'))
                 ->sort()
                 ->setRender(function ($user) {
-                    return '<div data-controller="layouts--layout-list" data-layouts--layout-list-url="' . route('platform.systems.users.edit',
-                            $user->id) . '">
-                            <a data-action="layouts--layout-list#edit">' . $user->email . '</a>
+                    return '<div data-controller="layouts--layout-list" data-layouts--layout-list-url="'.route('platform.systems.users.edit',
+                            $user->id).'">
+                            <a data-action="layouts--layout-list#edit">'.$user->email.'</a>
                             <div data-target="layouts--layout-list.modal" class="modal"></div>
                     </div>';
                 }),

@@ -100,8 +100,7 @@ abstract class Screen
             'screen'    => $this,
         ]);
     }
-    
-    
+
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -131,7 +130,7 @@ abstract class Screen
 
             return $this->view();
         }
-        
+
         if ($this->request->method() === 'POST' || (is_null($method) && is_null($parameters))) {
             $this->arguments = is_array($method) ? $method : [$method];
 
