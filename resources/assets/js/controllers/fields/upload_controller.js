@@ -18,6 +18,7 @@ export default class extends Controller {
 
 
     connect() {
+        console.log("Upload");
         this.initDropZone()
         this.initSortable()
     }

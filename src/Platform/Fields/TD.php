@@ -241,7 +241,46 @@ class TD
 
         return $this;
     }
+    
+    /**
+     * @param string $route
+     * @param        $options
+     * @param string $text
+     *
+     * @return TD
+     */
+    public function load(string $route, $options, string $text = null)
+    {
+        $this->setRender(function ($datum) use ($route, $options, $text) {
+            $attributes = [];
 
+            if (! is_array($options)) {
+                $options = [$options];
+            }
+
+            foreach ($options as $option) {
+                if (method_exists($datum, 'getContent')) {
+                    $attributes[] = $datum->getContent($option);
+                    continue;
+                }
+
+                $attributes[] = $datum->getAttribute($option);
+            }
+
+            if (! is_null($text)) {
+                $text = $datum->getContent($text);
+            }
+
+            return view('platform::partials.td.load', [
+                'route'      => $route,
+                'attributes' => $attributes,
+                'text'       => $text,
+            ]);
+        });
+
+        return $this;
+    }
+    
     /**
      * @param string $align
      *

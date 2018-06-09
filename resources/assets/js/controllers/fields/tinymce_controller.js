@@ -67,13 +67,14 @@ export default class extends Controller {
         //    true,
         //    /.*/
         //);
-
-
+        console.log("TinyMCE");
+        
         tinymce.baseURL = '/orchid/js/tinymce';
 
         let selector = this.element.querySelector('.tinymce').id;
         let input = this.element.querySelector('input');
 
+      
         let plugins = 'image media table link paste contextmenu textpattern autolink codesample';
         let toolbar1 = '';
         let inline = true;

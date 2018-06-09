@@ -28,6 +28,7 @@ class Layouts
         'columns' => 'platform::container.layouts.columns',
         'modals'  => 'platform::container.layouts.modals',
         'div'     => 'platform::container.layouts.div',
+        'listmodal'  => 'platform::container.layouts.listmodal',
     ];
 
     /**

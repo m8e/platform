@@ -7,7 +7,10 @@ namespace Orchid\Platform\Http\Screens\User;
 use Orchid\Platform\Models\User;
 use Orchid\Platform\Screen\Link;
 use Orchid\Platform\Screen\Screen;
+use Orchid\Platform\Screen\Layouts;
 use Orchid\Platform\Http\Layouts\User\UserListLayout;
+
+use Orchid\Platform\Http\Layouts\User\UserEditLayout;
 
 class UserList extends Screen
 {
@@ -61,7 +64,8 @@ class UserList extends Screen
     public function layout() : array
     {
         return [
-            UserListLayout::class,
+            Layouts::columns(['Left column'  => [UserListLayout::class]]),
+            Layouts::listmodal(['Left column'  => [UserEditLayout::class]]),
         ];
     }
 

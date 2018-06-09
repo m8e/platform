@@ -4076,7 +4076,7 @@ var _class = function (_Controller) {
     }
 
     _createClass(_class, [{
-        key: 'connect',
+        key: "connect",
         value: function connect() {
 
             //require.context(
@@ -4084,7 +4084,7 @@ var _class = function (_Controller) {
             //    true,
             //    /.*/
             //);
-
+            console.log("TinyMCE");
 
             __WEBPACK_IMPORTED_MODULE_1_tinymce_tinymce___default.a.baseURL = '/orchid/js/tinymce';
 
@@ -4103,7 +4103,7 @@ var _class = function (_Controller) {
 
             __WEBPACK_IMPORTED_MODULE_1_tinymce_tinymce___default.a.init({
                 branding: false,
-                selector: '#' + selector,
+                selector: "#" + selector,
                 theme: this.element.dataset.theme,
                 min_height: 300,
                 height: 300,
@@ -4133,7 +4133,7 @@ var _class = function (_Controller) {
                     data.append('file', blobInfo.blob());
 
                     axios.post(platform.prefix('/systems/files'), data).then(function (response) {
-                        success('/storage/' + response.data.path + response.data.name + '.' + response.data.extension);
+                        success("/storage/" + response.data.path + response.data.name + "." + response.data.extension);
                     }).catch(function (error) {
                         console.log(error);
                     });
@@ -4141,9 +4141,9 @@ var _class = function (_Controller) {
             });
         }
     }, {
-        key: 'disconnect',
+        key: "disconnect",
         value: function disconnect() {
-            __WEBPACK_IMPORTED_MODULE_1_tinymce_tinymce___default.a.remove('#' + this.element.querySelector('.tinymce').id);
+            __WEBPACK_IMPORTED_MODULE_1_tinymce_tinymce___default.a.remove("#" + this.element.querySelector('.tinymce').id);
         }
     }]);
 
@@ -4190,6 +4190,7 @@ var _class = function (_Controller) {
     _createClass(_class, [{
         key: "connect",
         value: function connect() {
+            console.log("Upload");
             this.initDropZone();
             this.initSortable();
         }
@@ -4706,42 +4707,29 @@ var _class = function (_Controller) {
     }
 
     _createClass(_class, [{
-        key: "connect",
+        key: 'connect',
+
 
         /**
          *
          */
         value: function connect() {}
     }, {
-        key: "edit",
+        key: 'edit',
         value: function edit() {
             var url = this.data.get('url');
-            //var modaldata = '';
             var element = this.element;
-            var modalTarget = this.modalTarget;
 
             var response = axios.post(url).then(function (response) {
-                //modaldata =response;
-                //element.querySelector('.modal').innerHTML = response.data;
-                var box1 = $.parseHTML(response.data); //$(response.data).find('#screen-modal-post');                     
-                //console.log(box1);
-                //element.querySelector('.modal').appendChild(box1); 
-                $('#modals-container').append(box1).text();
-                //modalTarget.append(response.data); 
-
+                $('#screen-modal-post .modal-body').append($.parseHTML(response.data)).text();
                 $('#screen-modal-post').modal('show');
-                //console.log(response.data);
             });
-
-            //this.modalTarget.innerHTML = response; 
-            //console.log(modaldata);
         }
     }]);
 
     return _class;
 }(__WEBPACK_IMPORTED_MODULE_0_stimulus__["Controller"]);
 
-_class.targets = ["modal"];
 /* harmony default export */ __webpack_exports__["default"] = (_class);
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
 
